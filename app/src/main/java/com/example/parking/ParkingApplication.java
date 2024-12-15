@@ -35,7 +35,8 @@ public class ParkingApplication {
             lot1.setFax("54667/3465");
             lot1.setBezeichnung("Parkplatz Immervoll");
             lot1.setId(5487L);
-            lot1.setFreiePlaetze("574855 (15%)");
+            lot1.setFreiePlaetzeAbsolut(574855);
+            lot1.setFreiePlaetzeProzent(15D);
             lot1.setFid("parkplatz.5487");
             lot1.setPoint(new Point(13.03783547D, 47.79744591D));
 
@@ -44,7 +45,8 @@ public class ParkingApplication {
             lot2.setFax("54667/34633333333335");
             lot2.setBezeichnung("Parkplatz Fisch");
             lot2.setId(55555L);
-            lot2.setFreiePlaetze("5 (80.95457323%)");
+            lot1.setFreiePlaetzeAbsolut(5);
+            lot1.setFreiePlaetzeProzent(80.95457323D);
             lot2.setFid("parkplatz.55555");
             lot2.setPoint(new Point(13.04368224D, 47.81539145D));
 

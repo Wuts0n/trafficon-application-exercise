@@ -16,7 +16,8 @@ public class ParkingLotModel {
     private String ansprechpartnerName;
     private String belegungTendenz;
     private String anmerkungen;
-    private String freiePlaetze;
+    private Integer freiePlaetzeAbsolut;
+    private Double freiePlaetzeProzent;
     private String tarif;
     private String oeffnungszeiten;
     private String ansprechpartnerUrl;
@@ -34,17 +35,18 @@ public class ParkingLotModel {
     public ParkingLotModel() {
     }
 
-    public ParkingLotModel(String fid, Point point, Long id, String bezeichnung, String kapazitaet, String typ, String ansprechpartnerName, String belegungTendenz, String anmerkungen, String freiePlaetze, String tarif, String oeffnungszeiten, String ansprechpartnerUrl, String datenquelleUrl, String belegungAktualisiert, String email, String adresse, String datenquelleName, String telefon, String url, Integer freiePlaetzeStatus, String fax) {
+    public ParkingLotModel(Long id, String fid, Point point, String bezeichnung, String kapazitaet, String typ, String ansprechpartnerName, String belegungTendenz, String anmerkungen, Integer freiePlaetzeAbsolut, Double freiePlaetzeProzent, String tarif, String oeffnungszeiten, String ansprechpartnerUrl, String datenquelleUrl, String belegungAktualisiert, String email, String adresse, String datenquelleName, String telefon, String url, Integer freiePlaetzeStatus, String fax) {
+        this.id = id;
         this.fid = fid;
         this.point = point;
-        this.id = id;
         this.bezeichnung = bezeichnung;
         this.kapazitaet = kapazitaet;
         this.typ = typ;
         this.ansprechpartnerName = ansprechpartnerName;
         this.belegungTendenz = belegungTendenz;
         this.anmerkungen = anmerkungen;
-        this.freiePlaetze = freiePlaetze;
+        this.freiePlaetzeAbsolut = freiePlaetzeAbsolut;
+        this.freiePlaetzeProzent = freiePlaetzeProzent;
         this.tarif = tarif;
         this.oeffnungszeiten = oeffnungszeiten;
         this.ansprechpartnerUrl = ansprechpartnerUrl;
@@ -57,6 +59,14 @@ public class ParkingLotModel {
         this.url = url;
         this.freiePlaetzeStatus = freiePlaetzeStatus;
         this.fax = fax;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFid() {
@@ -73,14 +83,6 @@ public class ParkingLotModel {
 
     public void setPoint(Point point) {
         this.point = point;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBezeichnung() {
@@ -131,12 +133,20 @@ public class ParkingLotModel {
         this.anmerkungen = anmerkungen;
     }
 
-    public String getFreiePlaetze() {
-        return freiePlaetze;
+    public Integer getFreiePlaetzeAbsolut() {
+        return freiePlaetzeAbsolut;
     }
 
-    public void setFreiePlaetze(String freiePlaetze) {
-        this.freiePlaetze = freiePlaetze;
+    public void setFreiePlaetzeAbsolut(Integer freiePlaetzeAbsolut) {
+        this.freiePlaetzeAbsolut = freiePlaetzeAbsolut;
+    }
+
+    public Double getFreiePlaetzeProzent() {
+        return freiePlaetzeProzent;
+    }
+
+    public void setFreiePlaetzeProzent(Double freiePlaetzeProzent) {
+        this.freiePlaetzeProzent = freiePlaetzeProzent;
     }
 
     public String getTarif() {
