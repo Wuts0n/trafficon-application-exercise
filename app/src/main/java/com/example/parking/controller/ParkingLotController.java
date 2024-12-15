@@ -2,10 +2,12 @@ package com.example.parking.controller;
 
 import com.example.exception.UnprocessableEntityException;
 import com.example.parking.model.ParkingLotModel;
+import com.example.parking.model.WrappedLongValue;
 import com.example.parking.service.ParkingLotService;
 import com.example.parking.utility.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.Optional;
 public class ParkingLotController {
 
     private static final String template = "Hello, %s!";
-    private static final String ALL = "all";
+    private static final String ALL = "*";
 
 
     @Autowired
@@ -32,6 +34,11 @@ public class ParkingLotController {
     @GetMapping("/{id}")
     public Optional<ParkingLotModel> findById(@PathVariable Long id) {
         return parkingLotService.findById(id);
+    }
+
+    @GetMapping("/sum")
+    public ResponseEntity<WrappedLongValue> findSumByIds(@RequestParam(value = "ids", required = false) String idsParam) {
+        return ResponseEntity.ok(parkingLotService.findSumByIds(idsParam));
     }
 
     // create a parking lot
