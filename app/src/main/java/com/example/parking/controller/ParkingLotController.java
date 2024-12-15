@@ -2,6 +2,7 @@ package com.example.parking.controller;
 
 import com.example.parking.model.ParkingLotModel;
 import com.example.parking.model.WrappedLongValue;
+import com.example.parking.model.parkingLotWfsDTO.ParkingLotWfsDTO;
 import com.example.parking.service.ParkingLotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +40,13 @@ public class ParkingLotController {
     @PostMapping
     public ParkingLotModel create(@RequestBody ParkingLotModel parkingLot) {
         return parkingLotService.save(parkingLot);
+    }
+
+    // import parking lots by WFS Json
+    @ResponseStatus(HttpStatus.CREATED) // 201
+    @PostMapping("/wfs")
+    public List<ParkingLotModel> importWfsJson(@RequestBody ParkingLotWfsDTO parkingLotWfsDTO) {
+        return parkingLotService.save(parkingLotWfsDTO);
     }
 
     // update a parking lot

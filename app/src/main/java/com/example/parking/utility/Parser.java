@@ -1,5 +1,6 @@
 package com.example.parking.utility;
 
+import com.example.parking.model.ParsedFreiePlaetze;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -25,5 +26,15 @@ public class Parser {
             ids.add(Long.parseLong(idString));
         }
         return ids;
+    }
+
+    public static ParsedFreiePlaetze parseFreiePlaetze(@NotNull String freiePlaetze) throws NumberFormatException {
+        ParsedFreiePlaetze parsedFreiePlaetze = new ParsedFreiePlaetze();
+        String[] split = freiePlaetze.split("\\(");
+        Integer absolut = Integer.parseInt(split[0].replaceAll("[^\\d.]", ""));
+        parsedFreiePlaetze.setAbsolut(absolut);
+        Double prozent = Double.parseDouble(split[1].replaceAll("[^\\d.]", ""));
+        parsedFreiePlaetze.setProzent(prozent);
+        return parsedFreiePlaetze;
     }
 }
