@@ -86,7 +86,7 @@ This is a basic REST interface that allows CRUD operations (`GET`, `PUT`, `UPDAT
 
 This is a custom interface that allows the user to import Salzburg's WFS Json format via `PUT`.
 
-Use `PUT` as request method, `/parkingLots/wfs` as path and the WFS Json _content_ (**not** the file as a whole) as body.
+Use `PUT` as request method, `/parkingLots/wfs` as path and the WFS Json _content_ (**not** the file as a blob) as body.
 
 
 ### /parkingLots/sum
@@ -128,6 +128,14 @@ Run tests by executing the command
 ```
 
 in the `app` folder.
+
+
+
+## Pros and Cons of the Dataset
+
+[A concise list of pros and cons of the dataset can be found in this file.](./data_source.md)
+
+
 
 ## Further Thoughts
 
