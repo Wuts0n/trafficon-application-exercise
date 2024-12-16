@@ -72,6 +72,33 @@ Additionally, two special methods will be added:
 
 
 
+## Implementation
+
+The application features a basic REST interface under `/parkingLots` and two special functions under `/parkingLots/wfs` and `/parkingLots/sum`.
+
+
+### /parkingLots
+
+This is a basic REST interface that allows CRUD operations (`GET`, `PUT`, `UPDATE`, `DELETE`) to store entites.
+
+
+### /parkingLots/wfs
+
+This is a custom interface that allows the user to import Salzburg's WFS Json format via `PUT`.
+
+Use `PUT` as request method, `/parkingLots/wfs` as path and the WFS Json _content_ (**not** the file as a whole) as body.
+
+
+### /parkingLots/sum
+
+This is a custom interface that allows the user to retrieve the sum of all available parking spaces via `GET`.
+
+Use `GET` as request method, `/parkingLots/sum` as path.
+
+Optionally, use `ids` as paramter (`/parkingLots/sum?ids=`). It accepts a comma-separated list of ids. E.g. "1,2,3,4". This lets you filter the sum by specific parking lots.
+
+
+
 ## Run
 
 Run the application by executing the command
@@ -90,8 +117,28 @@ Then, run the Spring application by executing the command
 
 in the `app` folder.
 
+
+
+## Test
+
+Run tests by executing the command
+
+```bash
+./mvnw test
+```
+
+in the `app` folder.
+
 ## Further Thoughts
+
+
+### FROST-Server
 
 Storing sensor data seems like a prime example for the usage of a tool implementing [OGC SensorThings API](https://www.ogc.org/publications/standard/sensorthings/), like the open-source [FROST-Server](https://fraunhoferiosb.github.io/FROST-Server/). Sensors can be added quickly. Furthermore, it features an extensive query language. Furthestmore, FROST-Server in particular features an MQTT interface so that subscribed applications will receive updates as soon as they happen. This would be a nice-to-have feature for Salzburg's parking lot data.
 
 Ultimately, this application is meant as an exercise to Spring. Thus, to my displeasure, I refrained from using a FROST-Server.
+
+
+### Swagger
+
+Would be a nice addition to have a nice-looking Swagger documentation for the REST interface for sure. Admittedly, I have not worked with it before so it is out of the scope for this small dummy application. I absolutely would not mind learning it.
