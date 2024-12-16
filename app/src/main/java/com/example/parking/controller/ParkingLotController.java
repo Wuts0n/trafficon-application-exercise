@@ -20,16 +20,19 @@ public class ParkingLotController {
     @Autowired
     private ParkingLotService parkingLotService;
 
+    // get all parking lots
     @GetMapping
     public List<ParkingLotModel> findAll() {
         return parkingLotService.findAll();
     }
 
+    // get a parking lot by ID
     @GetMapping("/{id}")
     public Optional<ParkingLotModel> findById(@PathVariable Long id) {
         return parkingLotService.findById(id);
     }
 
+    // get the sum of all empty parking spaces
     @GetMapping("/sum")
     public ResponseEntity<WrappedLongValue> findSumByIds(@RequestParam(value = "ids", required = false) String idsParam) {
         return ResponseEntity.ok(parkingLotService.findSumByIds(idsParam));

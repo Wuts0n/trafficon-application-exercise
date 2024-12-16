@@ -41,7 +41,7 @@ public class ParkingLotControllerTests {
     @Container
     @ServiceConnection
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
-            "postgres:16-alpine" // "kartoza/postgis:16-3"
+            "postgres:16-alpine" // "kartoza/postgis:16-3" does not work right off the bat, unfortunately. I am currently not using PostGIS functions, so it is fine. (?)
     );
 
     @BeforeEach
@@ -85,6 +85,7 @@ public class ParkingLotControllerTests {
     @Test
     void testFindAll() {
 
+        // check that all entities are returned successfully
         given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -98,6 +99,7 @@ public class ParkingLotControllerTests {
     @Test
     void testFindById() {
 
+        // check that entity is found by ID
         given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -113,9 +115,10 @@ public class ParkingLotControllerTests {
 
     @Test
     public void testDeleteById() {
-        Long id = 2L; // replace with a valid ID
+
+        // check that entity is deleted successfully
         given()
-                .pathParam("id", id)
+                .pathParam("id", 2L)
                 .when()
                 .delete("/parkingLots/{id}")
                 .then()
@@ -125,6 +128,7 @@ public class ParkingLotControllerTests {
     @Test
     public void testCreate() {
 
+        // check that parking lot was created
         given()
                 .contentType(ContentType.JSON)
                 .body("{ \"id\": 3, \"freiePlaetzeAbsolut\": 66, \"freiePlaetzeProzent\": 30, \"bezeichnung\": \"Bezeichnung\" }")
@@ -134,7 +138,7 @@ public class ParkingLotControllerTests {
                 .statusCode(201) // expecting HTTP 201 Created
                 .contentType(ContentType.JSON); // expecting JSON response content
 
-        // check that parking lot was created
+        // check that controller also returns the just created parking lot
         given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -158,6 +162,7 @@ public class ParkingLotControllerTests {
     @Test
     public void testUpdate() {
 
+        // check that model with id 5487 is found
         ParkingLotModel parkingLotBefore = parkingLotRepository.findById(5487L).get();
 
         Long id = parkingLotBefore.getId();
@@ -166,6 +171,7 @@ public class ParkingLotControllerTests {
         parkingLotBefore.setFreiePlaetzeStatus(2);
         parkingLotBefore.setFreiePlaetzeAbsolut(777);
 
+        // check that update request succeeds
         given()
                 .contentType(ContentType.JSON)
                 .body(parkingLotBefore)
@@ -175,9 +181,9 @@ public class ParkingLotControllerTests {
                 .statusCode(200)
                 .contentType(ContentType.JSON);
 
-        // get the updated book
         ParkingLotModel parkingLotAfter = parkingLotRepository.findById(id).orElseThrow();
 
+        // check that model updated correctly
         assertEquals(id, parkingLotAfter.getId());
         assertEquals("7684/485784", parkingLotAfter.getFax());
         assertEquals(2, parkingLotAfter.getFreiePlaetzeStatus());
@@ -194,6 +200,7 @@ public class ParkingLotControllerTests {
         wfs1.setNumberReturned(0L);
         wfs1.setTotalFeatures(0L);
 
+        // check that wrong request type fails
         given()
                 .contentType(ContentType.JSON)
                 .body(wfs1)
@@ -203,6 +210,7 @@ public class ParkingLotControllerTests {
                 .statusCode(405) // wrong request type (POST, should be PUT)
                 .contentType(ContentType.JSON);
 
+        // check that request fails when using wrong wfs type
         given()
                 .contentType(ContentType.JSON)
                 .body(wfs1)
@@ -219,6 +227,7 @@ public class ParkingLotControllerTests {
         features2.setType("Feet"); // wrong type again
         wfs2.setFeatures(List.of(features2).toArray(new ParkingLotWfsFeaturesDTO[1]));
 
+        // check that request fails when using wrong wfs features type
         given()
                 .contentType(ContentType.JSON)
                 .body(wfs2)
@@ -228,6 +237,7 @@ public class ParkingLotControllerTests {
                 .statusCode(422) // because wrong type
                 .contentType(ContentType.JSON);
 
+        // check that request succeeds if all values are correct
         given()
                 .contentType(ContentType.JSON)
                 .body(SalzburgParking.DUMMY_WFS_JSON)
@@ -240,7 +250,7 @@ public class ParkingLotControllerTests {
 
     @Test
     public void testFindSumByIds() {
-
+        // check that default values are summed up correctly
         given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -250,6 +260,7 @@ public class ParkingLotControllerTests {
                 .contentType(ContentType.JSON)
                 .body("value", equalTo(574917));
 
+        // check that values are summed up correctly when another parking lot is added
         ParkingLotModel lot4 = new ParkingLotModel();
         lot4.setAdresse("Ouagadougou");
         lot4.setFax("773");

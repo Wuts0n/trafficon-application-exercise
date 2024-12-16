@@ -28,6 +28,13 @@ public class Parser {
         return ids;
     }
 
+    /**
+     * Converts a string in the form of "XX (YY%)" to two independent numbers XX and YY
+     *
+     * @param freiePlaetze string in the form of "XX (YY%)"
+     * @return an object with the first absolute value and the second percentage value
+     * @throws NumberFormatException if any of XX or YY are not numbers
+     */
     public static ParsedFreiePlaetze parseFreiePlaetze(@NotNull String freiePlaetze) throws NumberFormatException {
         ParsedFreiePlaetze parsedFreiePlaetze = new ParsedFreiePlaetze();
         String[] split = freiePlaetze.split("\\(");

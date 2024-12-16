@@ -31,7 +31,15 @@ public class ParkingLotService {
         return parkingLotRepository.findById(id);
     }
 
-    public WrappedLongValue findSumByIds(String idsParam) {
+    /**
+     * Converts idsParam to a list of Long values.
+     * Then, forwards this list to the ParkingLotRepository.
+     *
+     * @param idsParam a string of integers separated by ",". E.g. "A,B,C,…"
+     * @return the result of the ParkingLotRepository
+     * @throws UnprocessableEntityException if the idsParam string is not properly delimited by "," or if a value is not an integer
+     */
+    public WrappedLongValue findSumByIds(String idsParam) throws UnprocessableEntityException {
         Long sum;
         if (idsParam == null || idsParam.isEmpty()) {
             sum = parkingLotRepository.findSum();
@@ -47,7 +55,14 @@ public class ParkingLotService {
         return new WrappedLongValue(sum);
     }
 
-    public List<ParkingLotModel> save(ParkingLotWfsDTO wfs) {
+    /**
+     * Takes a wfs json that is formatted in the very specific way that Salzburg formats it and converts it to an entity to be stored in this database
+     *
+     * @param wfs wfs json that is formatted in the very specific way that Salzburg formats it
+     * @return a list of all saved entities
+     * @throws UnprocessableEntityException if the wfs json is not formatted in the very specific way that Salzburg formats it
+     */
+    public List<ParkingLotModel> save(ParkingLotWfsDTO wfs) throws UnprocessableEntityException {
         if (wfs.getType() == null) {
             throw new UnprocessableEntityException("WFS Json is not properly formatted: Missing Type");
         }
