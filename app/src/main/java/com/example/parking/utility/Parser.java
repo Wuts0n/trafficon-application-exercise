@@ -31,9 +31,17 @@ public class Parser {
     public static ParsedFreiePlaetze parseFreiePlaetze(@NotNull String freiePlaetze) throws NumberFormatException {
         ParsedFreiePlaetze parsedFreiePlaetze = new ParsedFreiePlaetze();
         String[] split = freiePlaetze.split("\\(");
-        Integer absolut = Integer.parseInt(split[0].replaceAll("[^\\d.]", ""));
+        String absolutString = split[0].replaceAll("[^\\d.]", "");
+        String prozentString = split[1].replaceAll("[^\\d.]", "");
+        if (absolutString.isEmpty()) {
+            throw new NumberFormatException("Absolute Freie Plaetze Value is not a number.");
+        }
+        if (prozentString.isEmpty()) {
+            throw new NumberFormatException("Percentage Freie Plaetze Value is not a number.");
+        }
+        Integer absolut = Integer.parseInt(absolutString);
         parsedFreiePlaetze.setAbsolut(absolut);
-        Double prozent = Double.parseDouble(split[1].replaceAll("[^\\d.]", ""));
+        Double prozent = Double.parseDouble(prozentString);
         parsedFreiePlaetze.setProzent(prozent);
         return parsedFreiePlaetze;
     }

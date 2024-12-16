@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.geo.Point;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootApplication
@@ -28,8 +27,8 @@ public class ParkingApplication {
     @Bean
     @ConditionalOnProperty(prefix = "app", name = "db.init.enabled", havingValue = "true")
     public CommandLineRunner demoCommandLineRunnerParkingLots() {
-        return args -> {
-            System.out.println("Entering dummy parking lot values...");
+        return _ -> {
+            System.out.println("Inserting dummy parking lot values…");
 
             ParkingLotModel lot1 = new ParkingLotModel();
             lot1.setAdresse("at home");

@@ -258,6 +258,7 @@ public class ParkingLotControllerTests {
         lot4.setFreiePlaetzeAbsolut(14);
         lot4.setFreiePlaetzeProzent(100D);
         lot4.setFid("parkplatz.3");
+        lot4.setAdresse("Bilbalogho, Ouagadougou, Burkina Faso");
         lot4.setPoint(new Point(12.360801071578313D, -1.5260550566737625D));
         parkingLotRepository.save(lot4);
 
