@@ -3,9 +3,9 @@ package com.example.parking.model.parkingLotWfsDTO;
 public class ParkingLotWfsDTO {
     private String type;
     private ParkingLotWfsFeaturesDTO[] features;
-    private String totalFeatures;
-    private String numberMatched;
-    private String numberReturned;
+    private Long totalFeatures;
+    private Long numberMatched;
+    private Long numberReturned;
     private String timeStamp;
     private ParkingLotWfsCrsDTO crs;
 
@@ -28,27 +28,27 @@ public class ParkingLotWfsDTO {
         this.features = features;
     }
 
-    public String getTotalFeatures() {
+    public Long getTotalFeatures() {
         return totalFeatures;
     }
 
-    public void setTotalFeatures(String totalFeatures) {
+    public void setTotalFeatures(Long totalFeatures) {
         this.totalFeatures = totalFeatures;
     }
 
-    public String getNumberMatched() {
+    public Long getNumberMatched() {
         return numberMatched;
     }
 
-    public void setNumberMatched(String numberMatched) {
+    public void setNumberMatched(Long numberMatched) {
         this.numberMatched = numberMatched;
     }
 
-    public String getNumberReturned() {
+    public Long getNumberReturned() {
         return numberReturned;
     }
 
-    public void setNumberReturned(String numberReturned) {
+    public void setNumberReturned(Long numberReturned) {
         this.numberReturned = numberReturned;
     }
 

@@ -44,7 +44,7 @@ public class ParkingLotController {
 
     // import parking lots by WFS Json
     @ResponseStatus(HttpStatus.CREATED) // 201
-    @PostMapping("/wfs")
+    @PutMapping("/wfs")
     public List<ParkingLotModel> importWfsJson(@RequestBody ParkingLotWfsDTO parkingLotWfsDTO) {
         return parkingLotService.save(parkingLotWfsDTO);
     }

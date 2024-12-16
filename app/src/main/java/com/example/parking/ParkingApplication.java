@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.geo.Point;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootApplication
@@ -46,7 +47,7 @@ public class ParkingApplication {
             lot2.setBezeichnung("Parkplatz Fisch");
             lot2.setId(55555L);
             lot2.setFreiePlaetzeAbsolut(5);
-            lot2.setFreiePlaetzeProzent(80.95457323D);
+            lot2.setFreiePlaetzeProzent(80.9511D);
             lot2.setFid("parkplatz.55555");
             lot2.setPoint(new Point(13.04368224D, 47.81539145D));
 
