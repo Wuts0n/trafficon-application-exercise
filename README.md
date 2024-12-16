@@ -29,9 +29,9 @@ The application shall feature two interfaces:
 1) Data import
 2) Data retrieval
 
-Users with admin privileges can import and update data.
+In an ideal world, only users with admin privileges can import, update and delete data. Authorization and Authentication are **not** implemented here though.
 
-All users can query data. Currently, data can only be querried by a list of parking lots. The total amount of unoccupied parking spaces is then returned.
+All users can query parking lot data. Additionally, all users can query the sum of available parking spaces of all or of a specific set of parking lots.
 
 
 ### Database Relationship Diagram
