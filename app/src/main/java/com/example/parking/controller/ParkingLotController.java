@@ -26,30 +26,11 @@ public class ParkingLotController {
         return parkingLotService.findAll();
     }
 
-    // get a parking lot by ID
-    @GetMapping("/{id}")
-    public Optional<ParkingLotModel> findById(@PathVariable Long id) {
-        return parkingLotService.findById(id);
-    }
-
-    // get the sum of all empty parking spaces
-    @GetMapping("/sum")
-    public ResponseEntity<WrappedLongValue> findSumByIds(@RequestParam(value = "ids", required = false) String idsParam) {
-        return ResponseEntity.ok(parkingLotService.findSumByIds(idsParam));
-    }
-
     // create a parking lot
     @ResponseStatus(HttpStatus.CREATED) // 201
     @PostMapping
     public ParkingLotModel create(@RequestBody ParkingLotModel parkingLot) {
         return parkingLotService.save(parkingLot);
-    }
-
-    // import parking lots by WFS Json
-    @ResponseStatus(HttpStatus.CREATED) // 201
-    @PutMapping("/wfs")
-    public List<ParkingLotModel> importWfsJson(@RequestBody ParkingLotWfsDTO parkingLotWfsDTO) {
-        return parkingLotService.save(parkingLotWfsDTO);
     }
 
     // update a parking lot
@@ -58,10 +39,29 @@ public class ParkingLotController {
         return parkingLotService.save(parkingLot);
     }
 
+    // get a parking lot by ID
+    @GetMapping("/{id}")
+    public Optional<ParkingLotModel> findById(@PathVariable Long id) {
+        return parkingLotService.findById(id);
+    }
+
     // delete a parking lot
     @ResponseStatus(HttpStatus.NO_CONTENT) // 204
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         parkingLotService.deleteById(id);
+    }
+
+    // get the sum of all empty parking spaces
+    @GetMapping("/sum")
+    public ResponseEntity<WrappedLongValue> findSumByIds(@RequestParam(value = "ids", required = false) String idsParam) {
+        return ResponseEntity.ok(parkingLotService.findSumByIds(idsParam));
+    }
+
+    // import parking lots by WFS Json
+    @ResponseStatus(HttpStatus.CREATED) // 201
+    @PutMapping("/wfs")
+    public List<ParkingLotModel> importWfsJson(@RequestBody ParkingLotWfsDTO parkingLotWfsDTO) {
+        return parkingLotService.save(parkingLotWfsDTO);
     }
 }
