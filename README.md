@@ -129,6 +129,8 @@ Run tests by executing the command
 
 in the `app` folder.
 
+> ℹ️ Tests are run as GitHub Actions on each `push` or `pull request`.
+
 
 
 ## Pros and Cons of the Dataset
