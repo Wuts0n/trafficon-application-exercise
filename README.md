@@ -97,8 +97,7 @@ Use `GET` as request method, `/parkingLots/sum` as path.
 
 Optionally, use `ids` as paramter (`/parkingLots/sum?ids=`). It accepts a comma-separated list of ids. E.g. "1,2,3,4". This lets you filter the sum by specific parking lots.
 
-> ℹ️ [A Swagger documentation describing the REST-API can be found here.](./swagger/html2-documentation-generated/index.html)
-
+> ℹ️ A Swagger documentation describing the REST-API can be found on [SwaggerHub](https://app.swaggerhub.com/apis-docs/GEORG95LANG/Trafficon_Application_Exercise/1.0.0#/) and as [local HTML file](./swagger/html2-documentation-generated/index.html). (Unfortunately latter is a bit scuffed to view on GitHub because it is not rendered as HTML page.)
 
 
 ## Run
