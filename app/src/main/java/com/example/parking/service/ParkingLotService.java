@@ -1,15 +1,14 @@
 package com.example.parking.service;
 
-import com.example.exception.UnprocessableEntityException;
+import com.example.exception.BadRequestException;
 import com.example.parking.model.ParsedFreiePlaetze;
-import com.example.parking.model.WrappedLongValue;
+import com.example.parking.model.SumResponse;
 import com.example.parking.model.ParkingLotModel;
 import com.example.parking.model.parkingLotWfsDTO.ParkingLotWfsDTO;
 import com.example.parking.model.parkingLotWfsDTO.ParkingLotWfsFeaturesDTO;
 import com.example.parking.model.parkingLotWfsDTO.ParkingLotWfsFeaturesPropertiesDTO;
 import com.example.parking.repository.ParkingLotRepository;
-import com.example.parking.utility.Parser;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.parking.util.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
@@ -29,11 +28,7 @@ public class ParkingLotService {
     }
 
     public Optional<ParkingLotModel> findById(Long id) {
-        Optional<ParkingLotModel> entity = parkingLotRepository.findById(id);
-        if (entity.isEmpty()) {
-            throw new EntityNotFoundException("Entity with ID " + id + " was not found.");
-        }
-        return entity;
+        return parkingLotRepository.findById(id);
     }
 
     public ParkingLotModel save(ParkingLotModel parkingLot) {
@@ -50,22 +45,16 @@ public class ParkingLotService {
      *
      * @param idsParam a string of integers separated by ",". E.g. "A,B,C,…"
      * @return the result of the ParkingLotRepository
-     * @throws UnprocessableEntityException if the idsParam string is not properly delimited by "," or if a value is not an integer
+     * @throws BadRequestException if the idsParam string is not properly delimited by "," or if a value is not an integer
      */
-    public WrappedLongValue findSumByIds(String idsParam) throws UnprocessableEntityException {
+    public Long findSumByIds(List<Long> ids) throws BadRequestException {
         Long sum;
-        if (idsParam == null || idsParam.isEmpty()) {
+        if (ids == null || ids.isEmpty()) {
             sum = parkingLotRepository.findSum();
         } else {
-            List<Long> ids;
-            try {
-                ids = Parser.stringToLongList(idsParam);
-            } catch (NumberFormatException ex) {
-                throw new UnprocessableEntityException("Some ids are not valid numbers, or you are not using \",\" as delimiter: " + ex.getMessage(), ex);
-            }
             sum = parkingLotRepository.findSumByIds(ids);
         }
-        return new WrappedLongValue(sum);
+        return sum;
     }
 
     /**
@@ -73,24 +62,24 @@ public class ParkingLotService {
      *
      * @param wfs wfs json that is formatted in the very specific way that Salzburg formats it
      * @return a list of all saved entities
-     * @throws UnprocessableEntityException if the wfs json is not formatted in the very specific way that Salzburg formats it
+     * @throws BadRequestException if the wfs json is not formatted in the very specific way that Salzburg formats it
      */
-    public List<ParkingLotModel> save(ParkingLotWfsDTO wfs) throws UnprocessableEntityException {
+    public List<ParkingLotModel> save(ParkingLotWfsDTO wfs) throws BadRequestException {
         if (wfs.getType() == null) {
-            throw new UnprocessableEntityException("WFS Json is not properly formatted: Missing Type");
+            throw new BadRequestException("WFS Json is not properly formatted: Missing Type");
         }
         if (!wfs.getType().equals("FeatureCollection")) {
-            throw new UnprocessableEntityException("WFS Json is not properly formatted: Type is not FeatureCollection");
+            throw new BadRequestException("WFS Json is not properly formatted: Type is not FeatureCollection");
         }
         List<ParkingLotModel> parkingLotList = new ArrayList<>();
         if (wfs.getFeatures() != null) {
             for (ParkingLotWfsFeaturesDTO features : wfs.getFeatures()) {
                 ParkingLotModel parkingLot = new ParkingLotModel();
                 if (features.getType() == null) {
-                    throw new UnprocessableEntityException("WFS Json is not properly formatted: Missing Type");
+                    throw new BadRequestException("WFS Json is not properly formatted: Missing Type");
                 }
                 if (!features.getType().equals("Feature")) {
-                    throw new UnprocessableEntityException("WFS Json is not properly formatted: Type of Feature is not Feature");
+                    throw new BadRequestException("WFS Json is not properly formatted: Type of Feature is not Feature");
                 }
                 parkingLot.setFid(features.getId());
                 if (features.getGeometry() != null) {
@@ -116,7 +105,7 @@ public class ParkingLotService {
                         try {
                             parsedFreiePlaetze = Parser.parseFreiePlaetze(properties.getFreiePlaetze());
                         } catch (NumberFormatException ex) {
-                            throw new UnprocessableEntityException("WFS Json is not properly formatted: FREIE_PLAETZE is not formatted as \"XX (YY%)\"");
+                            throw new BadRequestException("WFS Json is not properly formatted: FREIE_PLAETZE is not formatted as \"XX (YY%)\"");
                         }
                     }
                     parkingLot.setFreiePlaetzeAbsolut(parsedFreiePlaetze.getAbsolut());

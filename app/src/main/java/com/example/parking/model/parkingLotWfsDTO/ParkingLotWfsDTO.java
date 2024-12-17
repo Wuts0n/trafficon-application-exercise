@@ -9,8 +9,6 @@ public class ParkingLotWfsDTO {
     private String timeStamp;
     private ParkingLotWfsCrsDTO crs;
 
-    public ParkingLotWfsDTO() {
-    }
 
     public String getType() {
         return type;

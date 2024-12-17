@@ -23,7 +23,7 @@ public class ParkingApplication {
     @Autowired
     ParkingLotRepository parkingLotRepository;
 
-    // Run this if app.db.init.enabled = true
+    // Run this if app.db.init.enabled = true in application.properties
     @Bean
     @ConditionalOnProperty(prefix = "app", name = "db.init.enabled", havingValue = "true")
     public CommandLineRunner demoCommandLineRunnerParkingLots() {

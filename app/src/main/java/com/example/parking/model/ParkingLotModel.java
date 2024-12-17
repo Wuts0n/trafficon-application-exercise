@@ -31,35 +31,6 @@ public class ParkingLotModel {
     private Integer freiePlaetzeStatus;
     private String fax;
 
-    // for JPA only, no use
-    public ParkingLotModel() {
-    }
-
-    public ParkingLotModel(Long id, String fid, Point point, String bezeichnung, Integer kapazitaet, String typ, String ansprechpartnerName, String belegungTendenz, String anmerkungen, Integer freiePlaetzeAbsolut, Double freiePlaetzeProzent, String tarif, String oeffnungszeiten, String ansprechpartnerUrl, String datenquelleUrl, String belegungAktualisiert, String email, String adresse, String datenquelleName, String telefon, String url, Integer freiePlaetzeStatus, String fax) {
-        this.id = id;
-        this.fid = fid;
-        this.point = point;
-        this.bezeichnung = bezeichnung;
-        this.kapazitaet = kapazitaet;
-        this.typ = typ;
-        this.ansprechpartnerName = ansprechpartnerName;
-        this.belegungTendenz = belegungTendenz;
-        this.anmerkungen = anmerkungen;
-        this.freiePlaetzeAbsolut = freiePlaetzeAbsolut;
-        this.freiePlaetzeProzent = freiePlaetzeProzent;
-        this.tarif = tarif;
-        this.oeffnungszeiten = oeffnungszeiten;
-        this.ansprechpartnerUrl = ansprechpartnerUrl;
-        this.datenquelleUrl = datenquelleUrl;
-        this.belegungAktualisiert = belegungAktualisiert;
-        this.email = email;
-        this.adresse = adresse;
-        this.datenquelleName = datenquelleName;
-        this.telefon = telefon;
-        this.url = url;
-        this.freiePlaetzeStatus = freiePlaetzeStatus;
-        this.fax = fax;
-    }
 
     public Long getId() {
         return id;

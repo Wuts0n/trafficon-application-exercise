@@ -4,8 +4,6 @@ public class ParkingLotWfsCrsDTO {
     private String type;
     private ParkingLotWfsCrsPropertiesDTO properties;
 
-    public ParkingLotWfsCrsDTO() {
-    }
 
     public String getType() {
         return type;

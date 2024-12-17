@@ -6,9 +6,7 @@ public class ParkingLotWfsFeaturesDTO {
     private ParkingLotWfsFeaturesGeometryDTO geometry;
     private ParkingLotWfsFeaturesPropertiesDTO properties;
 
-    public ParkingLotWfsFeaturesDTO() {
-    }
-
+    
     public String getType() {
         return type;
     }

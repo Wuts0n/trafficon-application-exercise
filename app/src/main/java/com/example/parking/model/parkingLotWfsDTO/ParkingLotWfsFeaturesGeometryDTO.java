@@ -5,8 +5,6 @@ public class ParkingLotWfsFeaturesGeometryDTO {
     private Double[] coordinates;
     private String geometry_name;
 
-    public ParkingLotWfsFeaturesGeometryDTO() {
-    }
 
     public String getType() {
         return type;

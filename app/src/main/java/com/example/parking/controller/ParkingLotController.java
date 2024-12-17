@@ -1,14 +1,18 @@
 package com.example.parking.controller;
 
+import com.example.exception.BadRequestException;
 import com.example.parking.model.ParkingLotModel;
-import com.example.parking.model.WrappedLongValue;
+import com.example.parking.model.SumResponse;
 import com.example.parking.model.parkingLotWfsDTO.ParkingLotWfsDTO;
 import com.example.parking.service.ParkingLotService;
+import com.example.parking.util.Parser;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,8 +45,9 @@ public class ParkingLotController {
 
     // get a parking lot by ID
     @GetMapping("/{id}")
-    public Optional<ParkingLotModel> findById(@PathVariable Long id) {
-        return parkingLotService.findById(id);
+    public ParkingLotModel findById(@PathVariable Long id) {
+        Optional<ParkingLotModel> entity = parkingLotService.findById(id);
+        return entity.orElseThrow(() -> new EntityNotFoundException("Entity with ID " + id + " was not found."));
     }
 
     // delete a parking lot
@@ -54,8 +59,18 @@ public class ParkingLotController {
 
     // get the sum of all empty parking spaces
     @GetMapping("/sum")
-    public ResponseEntity<WrappedLongValue> findSumByIds(@RequestParam(value = "ids", required = false) String idsParam) {
-        return ResponseEntity.ok(parkingLotService.findSumByIds(idsParam));
+    public ResponseEntity<SumResponse> findSumByIds(@RequestParam(value = "ids", required = false) String idsParam) {
+        Long sum;
+        List<Long> ids = new ArrayList<>();
+        if (idsParam != null && !idsParam.isEmpty()) {
+            try {
+                ids = Parser.stringToLongList(idsParam);
+            } catch (NumberFormatException ex) {
+                throw new BadRequestException("Some ids are not valid numbers, or you are not using \",\" as delimiter: " + ex.getMessage(), ex);
+            }
+        }
+        sum = parkingLotService.findSumByIds(ids);
+        return ResponseEntity.ok(new SumResponse(sum));
     }
 
     // import parking lots by WFS Json

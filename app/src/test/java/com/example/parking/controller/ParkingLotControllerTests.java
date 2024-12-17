@@ -155,7 +155,7 @@ public class ParkingLotControllerTests {
                 .when()
                 .post("/parkingLots")
                 .then()
-                .statusCode(422) // expecting HTTP 422 Unprocessable Entity
+                .statusCode(400) // expecting HTTP 400 Bad Request
                 .contentType(ContentType.JSON); // expecting JSON response content
     }
 
@@ -217,7 +217,7 @@ public class ParkingLotControllerTests {
                 .when()
                 .put("/parkingLots/wfs")
                 .then()
-                .statusCode(422) // because wrong type
+                .statusCode(400) // because wrong type
                 .contentType(ContentType.JSON);
 
 
@@ -234,7 +234,7 @@ public class ParkingLotControllerTests {
                 .when()
                 .put("/parkingLots/wfs")
                 .then()
-                .statusCode(422) // because wrong type
+                .statusCode(400) // because wrong type
                 .contentType(ContentType.JSON);
 
         // check that request succeeds if all values are correct

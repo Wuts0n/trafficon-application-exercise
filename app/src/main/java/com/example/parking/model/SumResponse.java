@@ -1,12 +1,12 @@
 package com.example.parking.model;
 
-public class WrappedLongValue {
+public class SumResponse {
     private Long value;
 
-    public WrappedLongValue() {
+    public SumResponse() {
     }
 
-    public WrappedLongValue(Long value) {
+    public SumResponse(Long value) {
         this.value = value;
     }
 

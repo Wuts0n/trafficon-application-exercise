@@ -44,8 +44,6 @@ public class ParkingLotWfsFeaturesPropertiesDTO {
     @JsonProperty("FAX")
     private String fax;
 
-    public ParkingLotWfsFeaturesPropertiesDTO() {
-    }
 
     public Long getId() {
         return id;

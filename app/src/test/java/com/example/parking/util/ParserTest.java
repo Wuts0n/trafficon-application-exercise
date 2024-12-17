@@ -1,4 +1,4 @@
-package com.example.parking.utility;
+package com.example.parking.util;
 
 import com.example.parking.model.ParsedFreiePlaetze;
 import org.junit.jupiter.api.Test;
