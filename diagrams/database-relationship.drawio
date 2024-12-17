@@ -19,7 +19,7 @@
         <mxCell id="WsyISZbgLVUZe-RSWzhI-5" value="BEZEICHNUNG: VARCHAR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
           <mxGeometry y="120" width="296" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="WsyISZbgLVUZe-RSWzhI-6" value="KAPAZITAET: VARCHAR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
+        <mxCell id="WsyISZbgLVUZe-RSWzhI-6" value="KAPAZITAET: INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
           <mxGeometry y="150" width="296" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WsyISZbgLVUZe-RSWzhI-7" value="TYP: VARCHAR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
@@ -34,7 +34,7 @@
         <mxCell id="WsyISZbgLVUZe-RSWzhI-10" value="ANMERKUNGEN: VARCHAR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
           <mxGeometry y="270" width="296" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="WsyISZbgLVUZe-RSWzhI-11" value="FREIE_PLAETZE_ABSOLUT: INT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
+        <mxCell id="WsyISZbgLVUZe-RSWzhI-11" value="FREIE_PLAETZE_ABSOLUT: INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
           <mxGeometry y="300" width="296" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WsyISZbgLVUZe-RSWzhI-24" value="FREIE_PLAETZE_PROZENT: FLOAT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
@@ -70,7 +70,7 @@
         <mxCell id="WsyISZbgLVUZe-RSWzhI-21" value="URL: VARCHAR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
           <mxGeometry y="630" width="296" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="WsyISZbgLVUZe-RSWzhI-22" value="FREIE_PLAETZE_STATUS: INT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
+        <mxCell id="WsyISZbgLVUZe-RSWzhI-22" value="FREIE_PLAETZE_STATUS: INTEGER" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
           <mxGeometry y="660" width="296" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WsyISZbgLVUZe-RSWzhI-23" value="FAX: VARCHAR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="WsyISZbgLVUZe-RSWzhI-1" vertex="1">
