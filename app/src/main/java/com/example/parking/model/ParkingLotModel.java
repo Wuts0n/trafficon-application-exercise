@@ -11,7 +11,7 @@ public class ParkingLotModel {
     private String fid;
     private Point point;
     private String bezeichnung;
-    private String kapazitaet;
+    private Integer kapazitaet;
     private String typ;
     private String ansprechpartnerName;
     private String belegungTendenz;
@@ -35,7 +35,7 @@ public class ParkingLotModel {
     public ParkingLotModel() {
     }
 
-    public ParkingLotModel(Long id, String fid, Point point, String bezeichnung, String kapazitaet, String typ, String ansprechpartnerName, String belegungTendenz, String anmerkungen, Integer freiePlaetzeAbsolut, Double freiePlaetzeProzent, String tarif, String oeffnungszeiten, String ansprechpartnerUrl, String datenquelleUrl, String belegungAktualisiert, String email, String adresse, String datenquelleName, String telefon, String url, Integer freiePlaetzeStatus, String fax) {
+    public ParkingLotModel(Long id, String fid, Point point, String bezeichnung, Integer kapazitaet, String typ, String ansprechpartnerName, String belegungTendenz, String anmerkungen, Integer freiePlaetzeAbsolut, Double freiePlaetzeProzent, String tarif, String oeffnungszeiten, String ansprechpartnerUrl, String datenquelleUrl, String belegungAktualisiert, String email, String adresse, String datenquelleName, String telefon, String url, Integer freiePlaetzeStatus, String fax) {
         this.id = id;
         this.fid = fid;
         this.point = point;
@@ -93,11 +93,11 @@ public class ParkingLotModel {
         this.bezeichnung = bezeichnung;
     }
 
-    public String getKapazitaet() {
+    public Integer getKapazitaet() {
         return kapazitaet;
     }
 
-    public void setKapazitaet(String kapazitaet) {
+    public void setKapazitaet(Integer kapazitaet) {
         this.kapazitaet = kapazitaet;
     }
 
