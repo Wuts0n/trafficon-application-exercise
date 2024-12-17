@@ -136,12 +136,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WrappedLongValue'
-        "422":
-          description: Unprocessable Entity
+        "400":
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnprocessableEntityError'
+                $ref: '#/components/schemas/BadRequestError'
   /parking-lots/wfs:
     put:
       summary: Import parking lots by WFS Json
@@ -161,12 +161,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ParkingLotModel'
-        "422":
-          description: Unprocessable Entity
+        "400":
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UnprocessableEntityError'
+                $ref: '#/components/schemas/BadRequestError'
 components:
   schemas:
     ParkingLotModel:
@@ -360,16 +360,19 @@ components:
     BadRequestError:
       type: object
       properties:
-        timestamp:
+        type:
           type: string
-          example: 2024-12-17T12:19:59.146+00:00
-        error:
+          example: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+        title:
           type: string
           example: Bad Request
         status:
           type: integer
           example: 400
-        path:
+        detail:
+          type: string
+          example: detailed description of error
+        instance:
           type: string
           example: endpoint
     EntityNotFoundError:
