@@ -23,6 +23,7 @@ jobs:
     - name: Build with Maven
       run: |
           cd app
+          chmod +x ./mvnw
           ./mvnw clean verify
  
     - name: Test Report
