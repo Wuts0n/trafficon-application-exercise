@@ -21,9 +21,9 @@ jobs:
         cache: maven
 
     - name: Build PostGIS Docker Container
-      run: |
-        cd postgres-docker
-        docker compose up
+      uses: hoverkraft-tech/compose-action@v2.0.2
+      with:
+        compose-file: "./postgres-docker/docker-compose.yml"
     
     - name: Build with Maven
       run: |
