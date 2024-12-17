@@ -8,7 +8,7 @@ public class ParkingLotWfsFeaturesPropertiesDTO {
     @JsonProperty("BEZEICHNUNG")
     private String bezeichnung;
     @JsonProperty("KAPAZITAET")
-    private String kapazitaet;
+    private Integer kapazitaet;
     @JsonProperty("TYP")
     private String typ;
     @JsonProperty("ANSPRECHPARTNER_NAME")
@@ -63,11 +63,11 @@ public class ParkingLotWfsFeaturesPropertiesDTO {
         this.bezeichnung = bezeichnung;
     }
 
-    public String getKapazitaet() {
+    public Integer getKapazitaet() {
         return kapazitaet;
     }
 
-    public void setKapazitaet(String kapazitaet) {
+    public void setKapazitaet(Integer kapazitaet) {
         this.kapazitaet = kapazitaet;
     }
 
