@@ -692,11 +692,11 @@
             defs["BadRequestError"] = {
   "type" : "object",
   "properties" : {
-    "timestamp" : {
+    "type" : {
       "type" : "string",
-      "example" : "2024-12-17T12:19:59.146+00:00"
+      "example" : "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
     },
-    "error" : {
+    "title" : {
       "type" : "string",
       "example" : "Bad Request"
     },
@@ -704,7 +704,11 @@
       "type" : "integer",
       "example" : 400
     },
-    "path" : {
+    "detail" : {
+      "type" : "string",
+      "example" : "detailed description of error"
+    },
+    "instance" : {
       "type" : "string",
       "example" : "endpoint"
     }
@@ -784,7 +788,7 @@
     },
     "tarif" : {
       "type" : "string",
-      "example" : "$2/hour"
+      "example" : "40€/Stunde"
     },
     "oeffnungszeiten" : {
       "type" : "string",
@@ -2689,26 +2693,26 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 422 - Unprocessable Entity </h3>
+                            <h3> Status: 400 - Bad Request </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-getSumOfEmptySpaces-422-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-getSumOfEmptySpaces-400-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-getSumOfEmptySpaces-422-schema">
-                                  <div id='responses-getSumOfEmptySpaces-422-schema-422' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-getSumOfEmptySpaces-400-schema">
+                                  <div id='responses-getSumOfEmptySpaces-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "Unprocessable Entity",
+  "description" : "Bad Request",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/UnprocessableEntityError"
+        "$ref" : "#/components/schemas/BadRequestError"
       }
     }
   }
@@ -2726,14 +2730,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-getSumOfEmptySpaces-422-schema-data').val(stringify(schema));
-                                        var result = $('#responses-getSumOfEmptySpaces-422-schema-422');
+                                        $('#responses-getSumOfEmptySpaces-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getSumOfEmptySpaces-400-schema-400');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-getSumOfEmptySpaces-422-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-getSumOfEmptySpaces-400-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -3052,26 +3056,26 @@ except ApiException as e:
                                 </div>
                             </div>
 
-                            <h3> Status: 422 - Unprocessable Entity </h3>
+                            <h3> Status: 400 - Bad Request </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
-                                  <a data-toggle="tab" href="#responses-importParkingLotsByWFS-422-schema">Schema</a>
+                                  <a data-toggle="tab" href="#responses-importParkingLotsByWFS-400-schema">Schema</a>
                                 </li>
 
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
-                                <div class="tab-pane active" id="responses-importParkingLotsByWFS-422-schema">
-                                  <div id='responses-importParkingLotsByWFS-422-schema-422' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                <div class="tab-pane active" id="responses-importParkingLotsByWFS-400-schema">
+                                  <div id='responses-importParkingLotsByWFS-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "Unprocessable Entity",
+  "description" : "Bad Request",
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/UnprocessableEntityError"
+        "$ref" : "#/components/schemas/BadRequestError"
       }
     }
   }
@@ -3089,14 +3093,14 @@ except ApiException as e:
 
                                         //console.log(JSON.stringify(schema));
                                         var view = new JSONSchemaView(schema, 3);
-                                        $('#responses-importParkingLotsByWFS-422-schema-data').val(stringify(schema));
-                                        var result = $('#responses-importParkingLotsByWFS-422-schema-422');
+                                        $('#responses-importParkingLotsByWFS-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-importParkingLotsByWFS-400-schema-400');
                                         result.empty();
                                         result.append(view.render());
                                       });
                                     </script>
                                   </div>
-                                  <input id='responses-importParkingLotsByWFS-422-schema-data' type='hidden' value=''></input>
+                                  <input id='responses-importParkingLotsByWFS-400-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
