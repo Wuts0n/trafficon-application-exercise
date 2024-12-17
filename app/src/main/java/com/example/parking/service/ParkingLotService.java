@@ -9,6 +9,7 @@ import com.example.parking.model.parkingLotWfsDTO.ParkingLotWfsFeaturesDTO;
 import com.example.parking.model.parkingLotWfsDTO.ParkingLotWfsFeaturesPropertiesDTO;
 import com.example.parking.repository.ParkingLotRepository;
 import com.example.parking.utility.Parser;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,19 @@ public class ParkingLotService {
     }
 
     public Optional<ParkingLotModel> findById(Long id) {
-        return parkingLotRepository.findById(id);
+        Optional<ParkingLotModel> entity = parkingLotRepository.findById(id);
+        if (entity.isEmpty()) {
+            throw new EntityNotFoundException("Entity with ID " + id + " was not found.");
+        }
+        return entity;
+    }
+
+    public ParkingLotModel save(ParkingLotModel parkingLot) {
+        return parkingLotRepository.save(parkingLot);
+    }
+
+    public void deleteById(Long id) {
+        parkingLotRepository.deleteById(id);
     }
 
     /**
@@ -125,13 +138,5 @@ public class ParkingLotService {
             }
         }
         return parkingLotRepository.saveAll(parkingLotList);
-    }
-
-    public ParkingLotModel save(ParkingLotModel parkingLot) {
-        return parkingLotRepository.save(parkingLot);
-    }
-
-    public void deleteById(Long id) {
-        parkingLotRepository.deleteById(id);
     }
 }
