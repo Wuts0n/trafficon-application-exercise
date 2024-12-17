@@ -19,6 +19,11 @@ jobs:
         java-version: '23'
         distribution: 'oracle'
         cache: maven
+
+    - name: Build PostGIS Docker Container
+      run: |
+        cd postgres-docker
+        docker compose up
     
     - name: Build with Maven
       run: |
