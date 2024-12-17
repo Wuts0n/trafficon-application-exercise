@@ -19,16 +19,14 @@ jobs:
         java-version: '23'
         distribution: 'oracle'
         cache: maven
+
+    - name: Build PostGIS Docker Container
+      uses: hoverkraft-tech/compose-action@v2.0.2
+      with:
+        compose-file: "./postgres-docker/docker-compose.yml"
     
     - name: Build with Maven
       run: |
           cd app
           chmod +x ./mvnw
           ./mvnw clean verify
- 
-    - name: Test Report
-      uses: actions/upload-artifact@v4
-      if: success() || failure()
-      with:
-          name: SpringBoot Report               # Name of the folder
-          path: target/site/serenity/           # Path to test results
