@@ -97,6 +97,8 @@ Use `GET` as request method, `/parkingLots/sum` as path.
 
 Optionally, use `ids` as paramter (`/parkingLots/sum?ids=`). It accepts a comma-separated list of ids. E.g. "1,2,3,4". This lets you filter the sum by specific parking lots.
 
+> ℹ️ [A Swagger documentation describing the REST-API can be found here.](./swagger/html2-documentation-generated/index.html)
+
 
 
 ## Run
@@ -148,7 +150,3 @@ Storing sensor data seems like a prime example for the usage of a tool implement
 
 Ultimately, this application is meant as an exercise to Spring. Thus, to my displeasure, I refrained from using a FROST-Server.
 
-
-### Swagger
-
-Would be a nice addition to have a nice-looking Swagger documentation for the REST interface for sure. Admittedly, I have not worked with it before so it is out of the scope for this small dummy application. I absolutely would not mind learning it.

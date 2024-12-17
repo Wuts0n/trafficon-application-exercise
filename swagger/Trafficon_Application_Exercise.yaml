@@ -1,0 +1,421 @@
+openapi: 3.0.0
+info:
+  title: Parking Lot API
+  description: API for managing parking lots.
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/GEORG95LANG/Trafficon_Application_Exercise/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://localhost:8080
+  description: Local server
+paths:
+  /parking-lots:
+    get:
+      summary: Get all parking lots
+      operationId: getAllParkingLots
+      responses:
+        "200":
+          description: A list of parking lots
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParkingLotModel'
+    put:
+      summary: Update a parking lot
+      operationId: updateParkingLot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParkingLotModel'
+        required: true
+      responses:
+        "200":
+          description: Parking lot updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParkingLotModel'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+    post:
+      summary: Create a new parking lot
+      operationId: createParkingLot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParkingLotModel'
+        required: true
+      responses:
+        "201":
+          description: Parking lot created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParkingLotModel'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+  /parking-lots/{id}:
+    get:
+      summary: Get a parking lot by ID
+      operationId: getParkingLotById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: A parking lot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParkingLotModel'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityNotFoundError'
+    delete:
+      summary: Delete a parking lot by ID
+      operationId: deleteParkingLotById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+  /parking-lots/sum:
+    get:
+      summary: Get the sum of all empty parking spaces
+      operationId: getSumOfEmptySpaces
+      parameters:
+      - name: ids
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: The sum of empty spaces
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WrappedLongValue'
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntityError'
+  /parking-lots/wfs:
+    put:
+      summary: Import parking lots by WFS Json
+      operationId: importParkingLotsByWFS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParkingLotWfsDTO'
+        required: true
+      responses:
+        "201":
+          description: Parking lots imported
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParkingLotModel'
+        "422":
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntityError'
+components:
+  schemas:
+    ParkingLotModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        fid:
+          type: string
+          example: parkplatz.1
+        point:
+          $ref: '#/components/schemas/ParkingLotModel_point'
+        bezeichnung:
+          type: string
+          example: Zentraler Parkplatz über der Wiener Residenz in Salzburg
+        kapazitaet:
+          type: integer
+          example: 150
+        typ:
+          type: string
+          example: Public
+        ansprechpartnerName:
+          type: string
+          example: John Doe
+        belegungTendenz:
+          type: string
+          example: Increasing
+        anmerkungen:
+          type: string
+          example: Open 24/7
+        freiePlaetzeAbsolut:
+          type: integer
+          example: 50
+        freiePlaetzeProzent:
+          type: number
+          format: double
+          example: 33.3
+        tarif:
+          type: string
+          example: 40€/Stunde
+        oeffnungszeiten:
+          type: string
+          example: 08:00 - 22:00
+        ansprechpartnerUrl:
+          type: string
+          format: uri
+          example: http://example.com/contact
+        datenquelleUrl:
+          type: string
+          format: uri
+          example: http://example.com/source
+        belegungAktualisiert:
+          type: string
+          format: date-time
+          example: 2023-01-01T12:00:00Z
+        email:
+          type: string
+          format: email
+          example: info@example.com
+        adresse:
+          type: string
+          example: 123 Main Street
+        datenquelleName:
+          type: string
+          example: City Parking Data
+        telefon:
+          type: string
+          example: +1-555-555-5555
+        url:
+          type: string
+          format: uri
+          example: http://example.com
+        freiePlaetzeStatus:
+          type: integer
+          example: 1
+        fax:
+          type: string
+          example: +49 4534/435656
+    WrappedLongValue:
+      type: object
+      properties:
+        value:
+          type: integer
+          example: 17
+    ParkingLotWfsDTO:
+      type: object
+      properties:
+        type:
+          type: string
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParkingLotWfsFeaturesDTO'
+        totalFeatures:
+          type: integer
+        numberMatched:
+          type: integer
+        numberReturned:
+          type: integer
+        timeStamp:
+          type: string
+          format: date-time
+        crs:
+          $ref: '#/components/schemas/ParkingLotWfsCrsDTO'
+    ParkingLotWfsFeaturesDTO:
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        geometry:
+          $ref: '#/components/schemas/ParkingLotWfsFeaturesGeometryDTO'
+        properties:
+          $ref: '#/components/schemas/ParkingLotWfsFeaturesPropertiesDTO'
+    ParkingLotWfsCrsDTO:
+      type: object
+      properties:
+        type:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ParkingLotWfsCrsPropertiesDTO'
+    ParkingLotWfsCrsPropertiesDTO:
+      type: object
+      properties:
+        name:
+          type: string
+    ParkingLotWfsFeaturesGeometryDTO:
+      type: object
+      properties:
+        type:
+          type: string
+        coordinates:
+          type: array
+          example:
+          - 13.405
+          - 52.52
+          items:
+            type: number
+        geometry_name:
+          type: string
+    ParkingLotWfsFeaturesPropertiesDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        bezeichnung:
+          type: string
+        kapazitaet:
+          type: integer
+        typ:
+          type: string
+        ansprechpartnerName:
+          type: string
+        belegungTendenz:
+          type: string
+        anmerkungen:
+          type: string
+        freiePlaetze:
+          type: string
+        tarif:
+          type: string
+        oeffnungszeiten:
+          type: string
+        ansprechpartnerUrl:
+          type: string
+          format: uri
+        datenquelleUrl:
+          type: string
+          format: uri
+        belegungAktualisiert:
+          type: string
+          format: date-time
+        email:
+          type: string
+          format: email
+        addresse:
+          type: string
+        datenquelleName:
+          type: string
+        telefon:
+          type: string
+        url:
+          type: string
+          format: uri
+        freiePlaetzeStatus:
+          type: integer
+        fax:
+          type: string
+    BadRequestError:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          example: 2024-12-17T12:19:59.146+00:00
+        error:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          example: 400
+        path:
+          type: string
+          example: endpoint
+    EntityNotFoundError:
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+        title:
+          type: string
+          example: Not Found
+        status:
+          type: integer
+          example: 404
+        detail:
+          type: string
+          example: detailed description of error
+        instance:
+          type: string
+          example: endpoint
+    UnprocessableEntityError:
+      type: object
+      properties:
+        type:
+          type: string
+          example: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+        title:
+          type: string
+          example: Unprocessable Entity
+        status:
+          type: integer
+          example: 422
+        detail:
+          type: string
+          example: detailed description of error
+        instance:
+          type: string
+          example: endpoint
+    ParkingLotModel_point:
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+          example: 52.52
+        "y":
+          type: number
+          format: double
+          example: 13.405
